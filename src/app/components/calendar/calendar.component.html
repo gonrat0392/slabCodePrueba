@@ -1,0 +1,124 @@
+<div class="wrapper-calendar">
+    <div class="container">
+        <div class="row">
+            <h1 class="mt-2 text-center">Calendar</h1>
+            <button data-bs-target="#modalEdit" data-bs-toggle="modal" class="btn btn-add" type="button"> + </button>
+        </div>
+    </div>
+    <div class="header-calendar">
+        <button (click)="changeMonth(-1)" class="btn-prev"><span class="icon">&lt;</span></button>
+        <h1 class="text-center">{{dateSelect | date:'MMMM, yyyy'}}</h1>
+        <button (click)="changeMonth(1)" class="btn-next"><span class="icon">></span></button>
+    </div>
+    <ol>
+        <li *ngFor="let day of week" class="day-name">{{day}}</li>
+
+        <!--<li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+         *ngFor="let day of monthSelect;let first = first">-->
+        <li [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+            *ngFor="let day of monthSelect; let first = first">
+            <span>{{day?.value}}</span>
+            <div *ngFor="let event of events; let i = index">
+                <div class="containerEvent" *ngIf="day?.value == event.day  &&  firstMonth == event.month">
+                    <div *ngFor="let incident of event.incident; let j = index">
+                        <span class="btnMore" *ngIf="j > 2"
+                            placement="top"
+                            ngbPopover="Contenido en construcción aqui podras ver todos los eventos" popoverTitle="Eventos programados">
+                            ver más eventos
+                        </span>
+                        <div class="incident">
+                            <span *ngIf="incident.event == 'Tarea'"></span>
+                            <span *ngIf="incident.event == 'Recordatorio'"></span>
+                            <span *ngIf="incident.event == 'Evento'"></span>
+                            <label placement="top"
+                            ngbPopover="'{{ incident.description }}: {{ incident.hourInitial }} - {{ incident.hourFinal }}'" popoverTitle="Eventos programados"> {{ incident.description }}: {{ incident.hourInitial }} - {{ incident.hourFinal }}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ol>
+</div>
+<div class="modal fade modalForm" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="modalEditLabel">Crear evento</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form [formGroup]="form" (submit)="clickDay()">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mt-2">
+                                    <label for="">Evento</label>
+                                    <select formControlName="eventAdd" class="form-select">
+                                        <option value="0" selected>- seleccione una opción -</option>
+                                        <option *ngFor="let event of eventsAdd"> {{ event.value }} </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mt-2">
+                                    <label for="">Fecha</label>
+                                    <input formControlName="date" type="date" class="form-control"
+                                        aria-describedby="helpId" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class=" mt-2" for="">Hora inicial</label>
+                                <div class="row">
+                                    <div class="form-group time">
+                                        <input formControlName="hourInitial" type="datetime" class="form-control"
+                                            aria-describedby="helpId" placeholder="hh">
+                                    </div>
+                                    <div class="form-group time">
+                                        <input formControlName="minutesInitial" type="datetime" class="form-control"
+                                            aria-describedby="helpId" placeholder="mm">
+                                    </div>
+                                    <div class="form-group zonaHoraria">
+                                        <select formControlName="horarioInitial" class="form-select">
+                                            <option value="am" selected> am </option>
+                                            <option value="pm" selected> pm </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class=" mt-2" for="">Hora final</label>
+                                <div class="row">
+                                    <div class="form-group time">
+                                        <input formControlName="hourFinal" type="datetime" class="form-control"
+                                            aria-describedby="helpId" placeholder="hh">
+                                    </div>
+                                    <div class="form-group time">
+                                        <input formControlName="minutesFinal" type="datetime" class="form-control"
+                                            aria-describedby="helpId" placeholder="mm">
+                                    </div>
+                                    <div class="form-group zonaHoraria">
+                                        <select formControlName="horarioFinal" class="form-select">
+                                            <option value="am" selected> am </option>
+                                            <option value="pm" selected> pm </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group mt-2">
+                                    <label for="">Descripción</label>
+                                    <textarea formControlName="description" class="form-control" cols="30"
+                                        rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-green-inverse" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

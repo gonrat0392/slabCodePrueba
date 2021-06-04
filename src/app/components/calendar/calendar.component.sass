@@ -1,0 +1,137 @@
+*
+    outline: none !important
+
+.wrapper-calendar
+    border: solid 1px #eaeaea
+    box-shadow: 0 0 10px #e4e4e4
+
+ol
+    list-style: none
+    display: grid
+    grid-template-columns: repeat(7, 1fr)
+    margin: 0
+    padding: 0
+
+li
+    height: 5rem
+    border: 1px solid #bfbdbd
+    color: #838383
+    font-size: 0.8rem
+    font-weight: 800
+    overflow: hidden
+    position: relative
+    span
+        float: left
+        margin: 4% 0 0 4%
+        color: #569ff3
+        font-size: 0.65rem
+h2
+    margin-bottom: 4px
+    padding: 0
+
+.first-day
+    grid-column-start: var(--first-day-start, 0)
+
+.day-name
+    background: #4987e4
+    color: #ffffff
+    border: none
+    font-weight: bold
+    font-size: 12px
+    margin-bottom: 2px
+    padding: 4px
+    text-align: center
+    &:hover
+        background-color: #4987e4
+        color: #ffffff
+.header-calendar
+    display: flex
+    justify-content: space-between
+    align-items: center
+    align-content: center
+    justify-content: center
+    h1
+        font-size: 13px
+        margin-top: 0.7rem
+    button
+        cursor: pointer
+        background-color: transparent
+        border: 0
+.day-name
+    height: 1.5rem
+    margin-bottom: 0
+.btn-add
+    width: 6%
+    font-weight: bold
+    position: absolute
+    right: 3%
+    top: 36%
+    background-color: #5fd6b2
+    color: #ffffff
+    border: none
+.container
+    position: relative
+.containerEvent
+    font-size: 0.6rem
+    width: 100%
+    margin-top: 4%
+    cursor: pointer
+    display: flow-root
+    .incident
+        width: 100%
+        background-color: #eaeaea
+        color: #6b6b6b
+        border-radius: 8px
+        margin: 2.4% 0
+        overflow: hidden
+        height: 0.9rem
+        padding: 0.5% 4%
+        display: block
+        &:hover
+            background-color: #49d2e4
+            color: #ffffff
+        span
+            width: 5%
+            margin: 0
+            margin-left: 3%
+            margin-right: 5%
+            cursor: pointer
+            color: #464646
+            &:hover
+                color: #ffffff
+        label
+            cursor: pointer
+            display: block
+            white-space: nowrap
+            text-overflow: ellipsis
+            overflow: hidden
+.btnMore
+    font-size: 0.6rem
+    float: right
+    margin: 0
+    padding: 0
+    cursor: pointer
+    position: absolute
+    right: 3%
+    top: 0
+    font-size: 0.6rem !important
+    color: #7f93a3 !important
+    &:hover
+        background-color: #49d2e4
+        color: #ffffff !important
+        top: -0.3rem
+        padding: 2%
+        border-radius: 5px
+.time
+    width: 27%
+    padding: 0
+    margin-left: 4%
+.zonaHoraria
+    width: 29%
+    padding: 0
+    margin-left: 4%
+    select
+        padding: .375rem 2.25rem .375rem .5rem
+.icon
+    font-weight: bold
+    font-size: 1.5rem
